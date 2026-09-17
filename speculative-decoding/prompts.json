@@ -1,0 +1,10 @@
+[
+  {
+    "name": "code-edit",
+    "prompt": "Rename the variable $vmList to $virtualMachines everywhere it appears in this PowerShell function and return the complete function with no explanation.\n\nfunction Get-StoppedVm {\n    param([string] $ResourceGroup)\n    $vmList = Get-AzVM -ResourceGroupName $ResourceGroup -Status\n    $stopped = @()\n    foreach ($vm in $vmList) {\n        if ($vm.PowerState -ne 'VM running') {\n            $stopped += [pscustomobject]@{\n                Name       = $vm.Name\n                PowerState = $vm.PowerState\n                Location   = $vm.Location\n            }\n        }\n    }\n    Write-Output \"Checked $($vmList.Count) virtual machines\"\n    return $stopped\n}"
+  },
+  {
+    "name": "short-story",
+    "prompt": "Write a 300 word short story about a network engineer who discovers that a forgotten route table has been sending traffic somewhere unexpected for three years."
+  }
+]

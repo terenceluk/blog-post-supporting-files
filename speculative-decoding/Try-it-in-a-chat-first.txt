@@ -1,0 +1,18 @@
+Rename the variable $vmList to $virtualMachines everywhere it appears in this PowerShell function and return the complete function with no explanation.
+
+function Get-StoppedVm {
+    param([string] $ResourceGroup)
+    $vmList = Get-AzVM -ResourceGroupName $ResourceGroup -Status
+    $stopped = @()
+    foreach ($vm in $vmList) {
+        if ($vm.PowerState -ne 'VM running') {
+            $stopped += [pscustomobject]@{
+                Name       = $vm.Name
+                PowerState = $vm.PowerState
+                Location   = $vm.Location
+            }
+        }
+    }
+    Write-Output "Checked $($vmList.Count) virtual machines"
+    return $stopped
+}
