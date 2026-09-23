@@ -1,0 +1,37 @@
+{
+  "schemaId": "azureMonitorCommonAlertSchema",
+  "data": {
+    "essentials": {
+      "alertId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.AlertsManagement/alerts/11111111-1111-1111-1111-111111111111",
+      "alertRule": "Entra ID - Failed sign-ins spike",
+      "severity": "Sev3",
+      "signalType": "Log",
+      "monitorCondition": "Fired",
+      "monitoringService": "Log Alerts V2",
+      "alertTargetIDs": [
+        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-monitoring/providers/microsoft.operationalinsights/workspaces/law-contoso-prod"
+      ],
+      "firedDateTime": "2026-09-22T03:14:07Z",
+      "description": "More than 50 failed sign-ins in 15 minutes across the tenant."
+    },
+    "alertContext": {
+      "conditionType": "LogQueryCriteria",
+      "condition": {
+        "windowSize": "PT15M",
+        "allOf": [
+          {
+            "searchQuery": "SigninLogs | where ResultType != \"0\" | summarize Failures = count(), Accounts = dcount(UserPrincipalName), IPs = dcount(IPAddress) by bin(TimeGenerated, 15m)",
+            "metricValue": 412,
+            "operator": "GreaterThan",
+            "threshold": "50",
+            "dimensions": [
+              { "name": "Accounts", "value": "187" },
+              { "name": "IPs", "value": "3" },
+              { "name": "TopResultType", "value": "50126" }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
