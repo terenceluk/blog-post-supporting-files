@@ -1,0 +1,279 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Jev receipt sorting</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { background: #f4f5f7; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; color: #1f2933; }
+  header { background: #1f2933; color: #fff; padding: 18px 32px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  header h1 { font-size: 20px; font-weight: 600; margin: 0; }
+  .now { display: flex; align-items: center; gap: 14px; }
+  .now img { width: 56px; height: 72px; object-fit: cover; border-radius: 6px; border: 2px solid #f59f00; background: #fff; }
+  .label { display: flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #9fb3c8; }
+  .file { font-weight: 600; }
+  .hint { font-size: 12px; color: #9fb3c8; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: #f59f00; animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: 0.2; } }
+  .stats { display: flex; gap: 10px; margin-left: auto; }
+  .stats div { min-width: 96px; padding: 8px 14px; border-radius: 8px; background: rgba(255, 255, 255, 0.08); text-align: center; }
+  .stats b { display: block; font-size: 22px; }
+  .stats span { font-size: 11px; color: #9fb3c8; }
+  .progress { height: 4px; background: #334e68; }
+  .progress span { display: block; height: 100%; background: #f59f00; }
+  main { padding: 24px 32px; }
+  .legend { margin: 0 0 16px; font-size: 13px; color: #6b7785; }
+  .board { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; align-items: start; }
+  .column { min-height: 140px; padding: 10px; border-radius: 10px; background: #e9ecf0; }
+  .column.review { background: #fff4e6; }
+  .column.review h2 { text-transform: none; }
+  .column h2 { display: flex; justify-content: space-between; margin: 2px 4px 10px; font-size: 13px; text-transform: capitalize; }
+  .count { padding: 0 8px; border-radius: 10px; background: #fff; font-size: 12px; color: #6b7785; }
+  .card { margin-bottom: 10px; overflow: hidden; border-radius: 8px; border-left: 4px solid #ced4da; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+  .card.correct { border-left-color: #2f9e44; }
+  .card.wrong { border-left-color: #e03131; }
+  .card.newest { box-shadow: 0 0 0 3px #f59f00; }
+  .thumb { display: flex; align-items: center; justify-content: center; height: 120px; background: #f1f3f5; }
+  .thumb img { max-width: 100%; max-height: 120px; }
+  .meta { padding: 8px 10px; }
+  .pick { font-size: 13px; font-weight: 600; }
+  .correct .pick { color: #2f9e44; }
+  .wrong .pick { color: #e03131; }
+  .bar { height: 4px; margin: 6px 0; border-radius: 2px; background: #e9ecef; }
+  .bar span { display: block; height: 100%; border-radius: 2px; background: #1c7ed6; }
+  .small { font-size: 11px; color: #6b7785; }
+  .flag { margin-left: 4px; padding: 0 4px; border-radius: 4px; background: #fff3bf; color: #946200; }
+  .empty { margin-top: 30px; font-size: 12px; text-align: center; color: #adb5bd; }
+</style></head><body>
+<header>
+  <h1>Jev receipt sorting</h1>
+      <div class="now">
+        <div>
+          <div class="label">Finished</div>
+          <div class="file">All receipts sorted</div>
+        </div>
+      </div>
+  <div class="stats">
+    <div><b>23</b><span>sorted</span></div>
+    <div><b>23</b><span>matched my label</span></div>
+    <div><b>1</b><span>sent to review</span></div>
+  </div>
+</header>
+<div class="progress"><span style="width: 100%"></span></div>
+<main>
+  <p class="legend">Green edge: Jev's choice matched labels.csv. Red edge: it did not. Blue bar: Jev's confidence. Yellow outline: the receipt Jev just answered. Confidence threshold for sorting: 0.6</p>
+  <div class="board">
+        <section class="column">
+          <h2>meals<span class="count">12</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1007-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1025-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1028-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1040-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1117-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1118-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1142-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1143-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1153-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Banh-Mi-Receipt-Landscape.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals <span class='flag'>sideways</span></div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/iPhone-Cash-Paid-Receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Sydney-Restaurant-Receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected meals </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>groceries<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/groceries-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; groceries</div>
+              <div class="bar"><span style="width: 93%"></span></div>
+              <div class="small">confidence 0.93, expected groceries </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>office supplies<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Offce-Supplies.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; office_supplies</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected office_supplies </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>office equipment<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Office-Equipment.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; office_equipment</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected office_equipment </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>travel transport<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Uber-Receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; travel_transport</div>
+              <div class="bar"><span style="width: 97%"></span></div>
+              <div class="small">confidence 0.97, expected travel_transport </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>fuel<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/gas-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; fuel</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected fuel </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>lodging<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Hotel-Receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; lodging</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected lodging </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>other<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/netflix-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; other</div>
+              <div class="bar"><span style="width: 100%"></span></div>
+              <div class="small">confidence 1.00, expected other </div>
+            </div>
+          </div>
+        </section>
+        <section class="column">
+          <h2>not a receipt<span class="count">3</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Office-Desk.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; not_a_receipt</div>
+              <div class="bar"><span style="width: 98%"></span></div>
+              <div class="small">confidence 0.98, expected not_a_receipt </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Oretta-Menu.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; not_a_receipt</div>
+              <div class="bar"><span style="width: 76%"></span></div>
+              <div class="small">confidence 0.76, expected not_a_receipt </div>
+            </div>
+          </div>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/Taco-Dish.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; not_a_receipt</div>
+              <div class="bar"><span style="width: 79%"></span></div>
+              <div class="small">confidence 0.79, expected not_a_receipt </div>
+            </div>
+          </div>
+        </section>
+        <section class="column review">
+          <h2>Sent to review<span class="count">1</span></h2>
+          <div class="card correct">
+            <div class="thumb"><img src="prepared/1017-receipt.jpg" alt=""></div>
+            <div class="meta">
+              <div class="pick">&#10004; meals</div>
+              <div class="bar"><span style="width: 31%"></span></div>
+              <div class="small">confidence 0.31, expected meals </div>
+            </div>
+          </div>
+        </section></div>
+</main>
+</body></html>

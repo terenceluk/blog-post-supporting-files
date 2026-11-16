@@ -1,0 +1,24 @@
+filename,expected,choice,confidence,sideways,top_two,folder,input_tokens,elapsed_ms
+1007-receipt.jpg,meals,meals,1.0,0.02,meals 1.00 / groceries 0.00,meals,2533,276
+1017-receipt.jpg,meals,meals,0.31,0.02,meals 0.39 / other 0.29,_review,2534,177
+1025-receipt.jpg,meals,meals,1.0,0.01,meals 1.00 / groceries 0.00,meals,2535,252
+1028-receipt.jpg,meals,meals,1.0,0.05,meals 1.00 / groceries 0.00,meals,920,217
+1040-receipt.jpg,meals,meals,1.0,0.02,meals 1.00 / groceries 0.00,meals,2532,213
+1117-receipt.jpg,meals,meals,1.0,0.02,meals 1.00 / groceries 0.00,meals,2535,325
+1118-receipt.jpg,meals,meals,1.0,0.2,meals 1.00 / groceries 0.00,meals,916,248
+1142-receipt.jpg,meals,meals,1.0,0.03,meals 1.00 / groceries 0.00,meals,2532,267
+1143-receipt.jpg,meals,meals,1.0,0.02,meals 1.00 / groceries 0.00,meals,2532,230
+1153-receipt.jpg,meals,meals,1.0,0.03,meals 1.00 / groceries 0.00,meals,1028,204
+Banh-Mi-Receipt-Landscape.jpg,meals,meals,1.0,0.85,meals 1.00 / groceries 0.00,meals,3812,231
+gas-receipt.jpg,fuel,fuel,1.0,0.01,fuel 1.00 / meals 0.00,fuel,2351,237
+groceries-receipt.jpg,groceries,groceries,0.93,0.06,groceries 0.94 / meals 0.06,groceries,1130,176
+Hotel-Receipt.jpg,lodging,lodging,1.0,0.01,lodging 1.00 / meals 0.00,lodging,1142,232
+iPhone-Cash-Paid-Receipt.jpg,meals,meals,1.0,0.05,meals 1.00 / groceries 0.00,meals,3880,252
+netflix-receipt.jpg,other,other,1.0,0.01,other 1.00 / meals 0.00,other,1431,193
+Offce-Supplies.jpg,office_supplies,office_supplies,1.0,0.01,office_supplies 1.00 / meals 0.00,office_supplies,3740,201
+Office-Desk.jpg,not_a_receipt,not_a_receipt,0.98,0.25,not_a_receipt 0.98 / office_equipment 0.02,not_a_receipt,3810,287
+Office-Equipment.jpg,office_equipment,office_equipment,1.0,0.01,office_equipment 1.00 / meals 0.00,office_equipment,3742,261
+Oretta-Menu.jpg,not_a_receipt,not_a_receipt,0.76,0.03,not_a_receipt 0.79 / meals 0.21,not_a_receipt,3718,184
+Sydney-Restaurant-Receipt.jpg,meals,meals,1.0,0.05,meals 1.00 / groceries 0.00,meals,3717,243
+Taco-Dish.jpg,not_a_receipt,not_a_receipt,0.79,0.09,not_a_receipt 0.81 / meals 0.19,not_a_receipt,5293,287
+Uber-Receipt.jpg,travel_transport,travel_transport,0.97,0.01,travel_transport 0.97 / not_a_receipt 0.03,travel_transport,2385,206

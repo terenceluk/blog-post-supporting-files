@@ -1,0 +1,1 @@
+{"model":"jev-1.14.0","state":{"receipt":"ref-1"},"assets":{"ref-1":{"type":"image","part":"image"}},"questions":{"is_receipt":{"type":"noul","instructions":"Is `receipt` a receipt?"}}}
