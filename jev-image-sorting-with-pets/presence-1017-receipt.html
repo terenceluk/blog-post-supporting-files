@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Box presence check</title><style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f5f7; color: #1f2933; font: 13px "Segoe UI", system-ui, sans-serif; }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; padding: 16px 28px; background: #1f2933; color: #fff; }
+h1 { margin: 0; font-size: 20px; }
+h2 { margin: 24px 0 10px; font-size: 16px; }
+.now { display: flex; align-items: center; gap: 12px; color: #9fb3c8; }
+.now img { width: 64px; height: 64px; object-fit: cover; border: 2px solid #f59f00; border-radius: 6px; }
+.stats { display: flex; gap: 10px; margin-left: auto; }
+.stats div { min-width: 100px; padding: 6px 12px; border-radius: 8px; background: #334e68; text-align: center; }
+.stats b { display: block; font-size: 22px; }
+.progress { height: 4px; background: #334e68; }
+.progress i { display: block; height: 100%; background: #f59f00; }
+main { padding: 12px 28px 28px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; align-items: start; }
+.pair { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; max-width: 1100px; margin-bottom: 12px; }
+.single { max-width: 520px; }
+.card { overflow: hidden; border-left: 5px solid #adb5bd; border-radius: 8px; background: #fff; }
+.card.good { border-left-color: #2f9e44; }
+.card.bad { border-left-color: #e03131; }
+.card.newest { outline: 3px solid #f59f00; }
+.thumb { display: block; width: 100%; height: 170px; object-fit: contain; background: #e9ecef; }
+.boxed { position: relative; }
+.boxed img { display: block; width: 100%; height: auto; }
+.box { position: absolute; border: 3px solid; }
+.box.jev { border-color: #ff2d95; }
+.box.label { border-color: #00c2ff; border-style: dashed; }
+.meta { padding: 8px 10px; line-height: 1.5; overflow-wrap: anywhere; }
+.bar { height: 5px; margin: 3px 0 6px; background: #e9ecef; }
+.bar i { display: block; height: 100%; background: #1c7ed6; }
+</style></head><body><header><h1>Box presence check</h1></header><div class="progress"><i style="width:100%"></i></div><main><div class="single card bad"><div class="boxed"><img src="file:///C:/jev-image-sorting-with-receipts/receipts/prepared/1017-receipt.jpg"><span class="box jev" style="left:3.00%;top:2.00%;width:11.00%;height:8.00%"></span></div><div class="meta"><b>No animal is present so the box should be discarded</b><div>has_animal 0.04</div><div class="bar"><i style="width:4.0%"></i></div><div>Box confidence 0.16</div><div class="bar"><i style="width:16.0%"></i></div><small>1017-receipt.jpg</small></div></div></main></body></html>

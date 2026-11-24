@@ -1,0 +1,16 @@
+{
+  "has_animal": {
+    "type": "noul",
+    "noul": 0.96
+  },
+  "head": {
+    "type": "box",
+    "box": {
+      "top": 0.12,
+      "bottom": 0.42,
+      "left": 0.38,
+      "right": 0.64
+    },
+    "confidence": 0.77
+  }
+}
